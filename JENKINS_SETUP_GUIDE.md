@@ -1,6 +1,7 @@
 # Hướng dẫn Setup Jenkins Local cho Playwright Java (macOS)
 
 Tài liệu này hướng dẫn bạn cách cài đặt Jenkins trực tiếp trên macOS (Native) và cấu hình để chạy test Playwright cũng như hiển thị báo cáo Allure.
+Yêu cầu: source hiện tại đã run test được bằng mvn test.
 
 ---
 
@@ -69,7 +70,7 @@ mvn -version
     *   **SCM**: Chọn *Git*.
     *   **Repository URL**: Đường dẫn tới repo của bạn (hoặc đường dẫn local).
     *   **Script Path**: Đảm bảo là `Jenkinsfile`.
-
+    * **Phải commit changes thì mới có tác dụng khi build**
 ---
 
 ## 5. Lưu ý quan trọng cho Playwright (Native macOS)
