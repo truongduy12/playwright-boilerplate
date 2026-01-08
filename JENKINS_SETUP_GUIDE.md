@@ -125,19 +125,19 @@ hudson.plugins.git.GitSCM.ALLOW_LOCAL_CHECKOUT = true
 ```
 *(Nếu vẫn không được, hãy dùng Cách 1 ở trên).*
 
-### Lỗi: ./mvnw: line 117: ./.mvn/wrapper/maven-wrapper.properties: No such file or directory
-Lỗi này thường xảy ra khi Jenkins checkout từ thư mục local và không nhận diện được các thư mục ẩn như `.mvn`.
+### Lỗi: mvn: command not found
+Jenkins không tìm thấy lệnh `mvn` vì biến môi trường PATH chưa được thiết lập.
 
 **Cách sửa:**
-Thay vì dùng `./mvnw`, hãy sử dụng lệnh `mvn` (Maven đã cài trên máy) trong `Jenkinsfile` hoặc cấu hình Job.
+Sử dụng block `tools` trong `Jenkinsfile` để Jenkins tự động nạp đường dẫn:
 
-1.  Mở file `Jenkinsfile`.
-2.  Thay đổi tất cả `./mvnw` thành `mvn`.
+1. Đảm bảo trong **Manage Jenkins > Tools**, bạn đã đặt tên cho Maven là `Maven 3` và JDK là `jdk-17`.
+2. `Jenkinsfile` hiện tại đã được cập nhật để sử dụng các tên này.
 
-*Ví dụ:*
-```diff
-- sh './mvnw -B test'
-+ sh 'mvn -B test'
+```groovy
+tools {
+    maven 'Maven 3'
+    jdk 'jdk-17'
+}
 ```
-*(Đảm bảo bạn đã cấu hình Maven trong **Manage Jenkins > Tools** như mục 3).*
 

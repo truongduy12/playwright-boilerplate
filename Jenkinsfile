@@ -1,9 +1,12 @@
 pipeline {
     agent any
+    
+    tools {
+        maven 'maven 3.9.12' // Tên phải khớp với cấu cấu hình trong Manage Jenkins -> Tools
+        jdk 'corretto-17.0.14'    // Tên phải khớp với cấu cấu hình trong Manage Jenkins -> Tools
+    }
 
     environment {
-        // Ensure Java 17 is used if available in standard paths or configured in Jenkins
-        // JAVA_HOME = tool name: 'jdk-17', type: 'jdk' // Uncomment if you use Global Tool Configuration
         HEADLESS = 'true'
     }
 
