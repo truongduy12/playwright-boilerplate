@@ -15,6 +15,8 @@ Cách dễ nhất để cài đặt Jenkins trên macOS là sử dụng [Homebre
 2.  **Khởi chạy Jenkins:**
     ```bash
     brew services start jenkins-lts
+
+    brew services stop jenkins-lts # Dừng jenkins
     ```
 3.  **Truy cập Jenkins:**
     Mở trình duyệt và truy cập: `http://localhost:8080`
