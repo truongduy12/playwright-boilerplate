@@ -6,6 +6,10 @@ pipeline {
         jdk 'corretto-17.0.14'    // Tên phải khớp với cấu cấu hình trong Manage Jenkins -> Tools
     }
 
+    triggers {
+        pollSCM('* * * * *') // Kiểm tra thay đổi mỗi phút
+    }
+
     environment {
         HEADLESS = 'true'
     }
