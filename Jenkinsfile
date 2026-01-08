@@ -11,8 +11,7 @@ pipeline {
         stage('Initialize') {
             steps {
                 echo 'Initializing Project...'
-                sh 'chmod +x mvnw'
-                sh './mvnw -version'
+                sh 'mvn -version'
             }
         }
 
@@ -20,9 +19,9 @@ pipeline {
             steps {
                 echo 'Installing Playwright Browsers...'
                 // Install project dependencies
-                sh './mvnw -B clean compile'
+                sh 'mvn -B clean compile'
                 // Install Playwright browsers
-                sh './mvnw exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install"'
+                sh 'mvn exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install"'
             }
         }
 
@@ -30,7 +29,7 @@ pipeline {
             steps {
                 echo 'Running Tests...'
                 // Run tests with Maven Wrapper
-                sh './mvnw -B test'
+                sh 'mvn -B test'
             }
         }
     }
