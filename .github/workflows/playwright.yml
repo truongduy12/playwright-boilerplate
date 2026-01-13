@@ -28,12 +28,16 @@ jobs:
       run: mvn test
 
     - name: Get Allure History
-      uses: actions/checkout@v4
       if: always()
-      continue-on-error: true
-      with:
-        ref: gh-pages
-        path: gh-pages
+      run: |
+        mkdir -p gh-pages
+        if git ls-remote --exit-code --heads origin gh-pages; then
+          echo "Found gh-pages branch"
+          git fetch --depth=1 origin gh-pages
+          git --work-tree=gh-pages checkout -f origin/gh-pages -- .
+        else
+          echo "gh-pages branch not found, skipping history"
+        fi
 
     - name: Allure Report
       uses: simple-elf/allure-report-action@master
